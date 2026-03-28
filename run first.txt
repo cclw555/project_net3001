@@ -1,0 +1,28 @@
+-- ═══════════════════════════════════════
+-- Breakout Game — Database Setup
+-- Run this in MySQL / phpMyAdmin
+-- ═══════════════════════════════════════
+
+CREATE DATABASE IF NOT EXISTS breakout_game
+  CHARACTER SET utf8mb4
+  COLLATE utf8mb4_unicode_ci;
+
+USE breakout_game;
+
+-- Users table
+CREATE TABLE IF NOT EXISTS users (
+  id          INT AUTO_INCREMENT PRIMARY KEY,
+  username    VARCHAR(20)  NOT NULL UNIQUE,
+  password    VARCHAR(255) NOT NULL,  -- bcrypt hash
+  created_at  DATETIME     DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+-- Scores table
+CREATE TABLE IF NOT EXISTS scores (
+  id          INT AUTO_INCREMENT PRIMARY KEY,
+  user_id     INT          NOT NULL,
+  score       INT          NOT NULL DEFAULT 0,
+  played_at   DATETIME     DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+  INDEX idx_score (score DESC)
+) ENGINE=InnoDB;
