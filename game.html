@@ -362,7 +362,7 @@
       if (!user) return; // only submit if logged in
 
       // Try PHP backend first, fallback to localStorage
-      fetch('php/submit_score.php', {
+      fetch('./submit_score.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ user_id: user.id, score: finalScore })

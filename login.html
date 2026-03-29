@@ -146,7 +146,7 @@
       }
 
       // Try PHP backend
-      fetch('php/login.php', {
+      fetch('./login.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password })
