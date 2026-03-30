@@ -9,33 +9,77 @@ $password = $input['password'] ?? '';
 
 // Validate
 if (strlen($username) < 2 || strlen($username) > 20) {
-    echo json_encode(['success' => false, 'message' => 'Username must be 2-20 characters.']);
+    echo json_encode([
+        'success' => false,
+        'message' => 'Username must be 2-20 characters.'
+    ]);
     exit;
 }
 
 if (strlen($password) < 4) {
-    echo json_encode(['success' => false, 'message' => 'Password must be at least 4 characters.']);
+    echo json_encode([
+        'success' => false,
+        'message' => 'Password must be at least 4 characters.'
+    ]);
     exit;
 }
 
-$pdo = getDB();
+$conn = getDB();
 
 // Check if username exists
-$stmt = $pdo->prepare('SELECT id FROM users WHERE username = ?');
-$stmt->execute([$username]);
-if ($stmt->fetch()) {
-    echo json_encode(['success' => false, 'message' => 'Username already taken.']);
+$stmt = $conn->prepare("SELECT id FROM users WHERE username = ?");
+
+if (!$stmt) {
+    echo json_encode([
+        'success' => false,
+        'message' => 'Database query preparation failed.'
+    ]);
     exit;
 }
+
+$stmt->bind_param("s", $username);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->fetch_assoc()) {
+    echo json_encode([
+        'success' => false,
+        'message' => 'Username already taken.'
+    ]);
+    $stmt->close();
+    $conn->close();
+    exit;
+}
+
+$stmt->close();
 
 // Create user
 $hash = password_hash($password, PASSWORD_BCRYPT);
-$stmt = $pdo->prepare('INSERT INTO users (username, password) VALUES (?, ?)');
-$stmt->execute([$username, $hash]);
 
-$userId = $pdo->lastInsertId();
+$stmt = $conn->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
+
+if (!$stmt) {
+    echo json_encode([
+        'success' => false,
+        'message' => 'Database query preparation failed.'
+    ]);
+    $conn->close();
+    exit;
+}
+
+$stmt->bind_param("ss", $username, $hash);
+$stmt->execute();
+
+$userId = $conn->insert_id;
 
 echo json_encode([
     'success' => true,
-    'user' => ['id' => (int)$userId, 'username' => $username]
+    'user' => [
+        'id' => (int)$userId,
+        'username' => $username
+    ]
 ]);
+
+$stmt->close();
+$conn->close();
+?>

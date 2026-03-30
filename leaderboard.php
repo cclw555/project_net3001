@@ -2,10 +2,10 @@
 header('Content-Type: application/json');
 require_once 'db.php';
 
-$pdo = getDB();
+$conn = getDB();
 
 // Get top 20 scores (best score per user)
-$stmt = $pdo->query('
+$sql = "
     SELECT u.username,
            MAX(s.score) AS score,
            DATE(MAX(s.played_at)) AS date
@@ -14,8 +14,25 @@ $stmt = $pdo->query('
     GROUP BY s.user_id, u.username
     ORDER BY score DESC
     LIMIT 20
-');
+";
 
-$rows = $stmt->fetchAll();
+$result = $conn->query($sql);
+
+if (!$result) {
+    echo json_encode([
+        'success' => false,
+        'message' => 'Failed to fetch leaderboard.'
+    ]);
+    exit;
+}
+
+$rows = [];
+
+while ($row = $result->fetch_assoc()) {
+    $rows[] = $row;
+}
 
 echo json_encode($rows);
+
+$conn->close();
+?>

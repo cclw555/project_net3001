@@ -8,22 +8,61 @@ $userId = (int)($input['user_id'] ?? 0);
 $score  = (int)($input['score'] ?? 0);
 
 if ($userId <= 0 || $score < 0) {
-    echo json_encode(['success' => false, 'message' => 'Invalid data.']);
+    echo json_encode([
+        'success' => false,
+        'message' => 'Invalid data.'
+    ]);
     exit;
 }
 
-$pdo = getDB();
+$conn = getDB();
 
 // Verify user exists
-$stmt = $pdo->prepare('SELECT id FROM users WHERE id = ?');
-$stmt->execute([$userId]);
-if (!$stmt->fetch()) {
-    echo json_encode(['success' => false, 'message' => 'User not found.']);
+$stmt = $conn->prepare("SELECT id FROM users WHERE id = ?");
+
+if (!$stmt) {
+    echo json_encode([
+        'success' => false,
+        'message' => 'Database query preparation failed.'
+    ]);
     exit;
 }
 
-// Insert score
-$stmt = $pdo->prepare('INSERT INTO scores (user_id, score) VALUES (?, ?)');
-$stmt->execute([$userId, $score]);
+$stmt->bind_param("i", $userId);
+$stmt->execute();
+$result = $stmt->get_result();
 
-echo json_encode(['success' => true]);
+if (!$result->fetch_assoc()) {
+    echo json_encode([
+        'success' => false,
+        'message' => 'User not found.'
+    ]);
+    $stmt->close();
+    $conn->close();
+    exit;
+}
+
+$stmt->close();
+
+// Insert score
+$stmt = $conn->prepare("INSERT INTO scores (user_id, score) VALUES (?, ?)");
+
+if (!$stmt) {
+    echo json_encode([
+        'success' => false,
+        'message' => 'Database query preparation failed.'
+    ]);
+    $conn->close();
+    exit;
+}
+
+$stmt->bind_param("ii", $userId, $score);
+$stmt->execute();
+
+echo json_encode([
+    'success' => true
+]);
+
+$stmt->close();
+$conn->close();
+?>

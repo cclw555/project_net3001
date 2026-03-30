@@ -8,22 +8,47 @@ $username = trim($input['username'] ?? '');
 $password = $input['password'] ?? '';
 
 if (!$username || !$password) {
-    echo json_encode(['success' => false, 'message' => 'Please fill in all fields.']);
+    echo json_encode([
+        'success' => false,
+        'message' => 'Please fill in all fields.'
+    ]);
     exit;
 }
 
-$pdo = getDB();
+$conn = getDB();
 
-$stmt = $pdo->prepare('SELECT id, username, password FROM users WHERE username = ?');
-$stmt->execute([$username]);
-$user = $stmt->fetch();
+$stmt = $conn->prepare("SELECT id, username, password FROM users WHERE username = ?");
+
+if (!$stmt) {
+    echo json_encode([
+        'success' => false,
+        'message' => 'Database query preparation failed.'
+    ]);
+    exit;
+}
+
+$stmt->bind_param("s", $username);
+$stmt->execute();
+
+$result = $stmt->get_result();
+$user = $result->fetch_assoc();
 
 if (!$user || !password_verify($password, $user['password'])) {
-    echo json_encode(['success' => false, 'message' => 'Invalid username or password.']);
+    echo json_encode([
+        'success' => false,
+        'message' => 'Invalid username or password.'
+    ]);
     exit;
 }
 
 echo json_encode([
     'success' => true,
-    'user' => ['id' => (int)$user['id'], 'username' => $user['username']]
+    'user' => [
+        'id' => (int)$user['id'],
+        'username' => $user['username']
+    ]
 ]);
+
+$stmt->close();
+$conn->close();
+?>
