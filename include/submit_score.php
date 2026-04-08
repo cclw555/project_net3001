@@ -1,4 +1,12 @@
 <?php
+/* 
+   Group Name: Leaderboard Game
+   Members: Yifan Sun, Tony Baxter, Zongrui Liu
+   Author: Yifan Sun
+   Usage: PHP file for submitting a player's score, including reading JSON input,
+   validating user ID and score, checking whether the user exists, inserting
+   the score into the database, and returning the result in JSON format.
+*/
 header('Content-Type: application/json');
 require_once 'db.php';
 

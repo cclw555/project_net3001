@@ -1,4 +1,12 @@
 <?php
+/* 
+   Group Name: Leaderboard Game
+   Members: Yifan Sun, Tony Baxter, Zongrui Liu
+   Author: Yifan Sun
+   Usage: PHP file for user login authentication, including reading JSON input,
+   validating username and password, checking the database, verifying the
+   hashed password, and returning the login result in JSON format.
+*/
 header('Content-Type: application/json');
 require_once 'db.php';
 

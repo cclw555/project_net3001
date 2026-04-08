@@ -1,3 +1,10 @@
+/* 
+   Group Name: Leaderboard Game
+   Members: Yifan Sun, Tony Baxter, Zongrui Liu
+   Usage: Shared stylesheet for the Breakout website, including global colors,
+   typography, navigation, buttons, cards, forms, footer, animations, toast
+   messages, and leaderboard table styles.
+*/
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Chakra+Petch:wght@400;600;700&display=swap");
 
 :root {

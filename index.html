@@ -1,116 +1,136 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="author" content="">
-  <meta name="description" content="Breakout — a classic arcade brick-breaker game.">
-  <title>Breakout — Home</title>
-  <link rel="stylesheet" href="include/style.css">
-  <link rel="stylesheet" href="include/index.css">
-  <script src="include/index.js" defer></script>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Tony Baxter" />
+    <meta
+      name="description"
+      content="Breakout — a classic arcade brick-breaker game."
+    />
+    <title>Breakout — Home</title>
+    <link rel="stylesheet" href="include/style.css" />
+    <link rel="stylesheet" href="include/index.css" />
+    <script src="include/index.js" defer></script>
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav>
+      <a href="index.html" class="nav-logo">BREAKOUT</a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="game.html">Play</a></li>
+        <li><a href="leaderboard.html">Leaderboard</a></li>
+        <li><a href="login.html" id="nav-auth-link">Login</a></li>
+      </ul>
+    </nav>
 
-  <!-- NAV -->
-  <nav>
-    <a href="index.html" class="nav-logo">BREAKOUT</a>
-    <ul class="nav-links">
-      <li><a href="index.html" class="active">Home</a></li>
-      <li><a href="game.html">Play</a></li>
-      <li><a href="leaderboard.html">Leaderboard</a></li>
-      <li><a href="login.html" id="nav-auth-link">Login</a></li>
-    </ul>
-  </nav>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-bricks" id="heroBricks"></div>
+      <h1 class="hero-title fade-in"><span>BREAKOUT</span></h1>
+      <p class="hero-sub fade-in fade-in-delay-1">
+        Smash bricks, rack up points, and climb the global leaderboard.
+      </p>
+      <div class="hero-actions fade-in fade-in-delay-2">
+        <a href="game.html" class="btn btn-primary">▶ Play Now</a>
+        <a href="#how-to-play" class="btn btn-secondary">How to Play</a>
+      </div>
+    </section>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-bricks" id="heroBricks"></div>
-    <h1 class="hero-title fade-in"><span>BREAKOUT</span></h1>
-    <p class="hero-sub fade-in fade-in-delay-1">
-      Smash bricks, rack up points, and climb the global leaderboard.
-    </p>
-    <div class="hero-actions fade-in fade-in-delay-2">
-      <a href="game.html" class="btn btn-primary">▶ Play Now</a>
-      <a href="#how-to-play" class="btn btn-secondary">How to Play</a>
-    </div>
-  </section>
-
-  <!-- FEATURES -->
-  <section class="features">
-    <div class="container">
-      <div class="features-grid">
-        <div class="card feature-card fade-in fade-in-delay-1">
-          <div class="feature-icon">🧱</div>
-          <h3>Classic Gameplay</h3>
-          <p>4 rows * 8 columns of bricks. Bounce the ball, break them all, and don't let it drop.</p>
-        </div>
-        <div class="card feature-card fade-in fade-in-delay-2">
-          <div class="feature-icon">🏆</div>
-          <h3>Leaderboard</h3>
-          <p>Compete for the top spot. Your best scores are saved and ranked globally.</p>
-        </div>
-        <div class="card feature-card fade-in fade-in-delay-3">
-          <div class="feature-icon">⚡</div>
-          <h3>Smooth &amp; Fast</h3>
-          <p>canvas rendering with responsive controls and fluid physics.</p>
+    <!-- FEATURES -->
+    <section class="features">
+      <div class="container">
+        <div class="features-grid">
+          <div class="card feature-card fade-in fade-in-delay-1">
+            <div class="feature-icon">🧱</div>
+            <h3>Classic Gameplay</h3>
+            <p>
+              4 rows * 8 columns of bricks. Bounce the ball, break them all, and
+              don't let it drop.
+            </p>
+          </div>
+          <div class="card feature-card fade-in fade-in-delay-2">
+            <div class="feature-icon">🏆</div>
+            <h3>Leaderboard</h3>
+            <p>
+              Compete for the top spot. Your best scores are saved and ranked
+              globally.
+            </p>
+          </div>
+          <div class="card feature-card fade-in fade-in-delay-3">
+            <div class="feature-icon">⚡</div>
+            <h3>Smooth &amp; Fast</h3>
+            <p>canvas rendering with responsive controls and fluid physics.</p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- HOW TO PLAY -->
-  <section class="how-to-play" id="how-to-play">
-    <div class="container">
-      <h2 class="section-title text-center fade-in">// How to Play</h2>
+    <!-- HOW TO PLAY -->
+    <section class="how-to-play" id="how-to-play">
+      <div class="container">
+        <h2 class="section-title text-center fade-in">// How to Play</h2>
 
-      <div class="rules-grid">
-        <div class="card rule-card fade-in fade-in-delay-1">
-          <span class="rule-number">01</span>
-          <h4>Objective</h4>
-          <p>Destroy all 32 bricks on the board to win. Each brick awards 10 points.</p>
+        <div class="rules-grid">
+          <div class="card rule-card fade-in fade-in-delay-1">
+            <span class="rule-number">01</span>
+            <h4>Objective</h4>
+            <p>
+              Destroy all 32 bricks on the board to win. Each brick awards 10
+              points.
+            </p>
+          </div>
+          <div class="card rule-card fade-in fade-in-delay-2">
+            <span class="rule-number">02</span>
+            <h4>Controls</h4>
+            <p>
+              Use the left and right arrow keys to slide the paddle. Keep the
+              ball in play!
+            </p>
+          </div>
+          <div class="card rule-card fade-in fade-in-delay-3">
+            <span class="rule-number">03</span>
+            <h4>Scoring</h4>
+            <p>
+              +10 points per brick. Clear the entire board for a perfect
+              320-point run.
+            </p>
+          </div>
+          <div class="card rule-card fade-in fade-in-delay-4">
+            <span class="rule-number">04</span>
+            <h4>Game Over</h4>
+            <p>
+              If the ball falls past your paddle, it's game over. Your score is
+              submitted automatically.
+            </p>
+          </div>
         </div>
-        <div class="card rule-card fade-in fade-in-delay-2">
-          <span class="rule-number">02</span>
-          <h4>Controls</h4>
-          <p>Use the left and right arrow keys to slide the paddle. Keep the ball in play!</p>
-        </div>
-        <div class="card rule-card fade-in fade-in-delay-3">
-          <span class="rule-number">03</span>
-          <h4>Scoring</h4>
-          <p>+10 points per brick. Clear the entire board for a perfect 320-point run.</p>
-        </div>
-        <div class="card rule-card fade-in fade-in-delay-4">
-          <span class="rule-number">04</span>
-          <h4>Game Over</h4>
-          <p>If the ball falls past your paddle, it's game over. Your score is submitted automatically.</p>
+
+        <div class="controls-table fade-in fade-in-delay-3">
+          <div class="controls-row">
+            <span class="key">← Arrow</span>
+            <span>Move paddle left</span>
+          </div>
+          <div class="controls-row">
+            <span class="key">→ Arrow</span>
+            <span>Move paddle right</span>
+          </div>
+          <div class="controls-row">
+            <span class="key">P</span>
+            <span>Pause / Resume</span>
+          </div>
+          <div class="controls-row">
+            <span class="key">R</span>
+            <span>Restart game</span>
+          </div>
         </div>
       </div>
+    </section>
 
-      <div class="controls-table fade-in fade-in-delay-3">
-        <div class="controls-row">
-          <span class="key">← Arrow</span>
-          <span>Move paddle left</span>
-        </div>
-        <div class="controls-row">
-          <span class="key">→ Arrow</span>
-          <span>Move paddle right</span>
-        </div>
-        <div class="controls-row">
-          <span class="key">P</span>
-          <span>Pause / Resume</span>
-        </div>
-        <div class="controls-row">
-          <span class="key">R</span>
-          <span>Restart game</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <p>Index · Breakout 2026</p>
-  </footer>
-</body>
+    <!-- FOOTER -->
+    <footer>
+      <p>Index · Breakout 2026</p>
+    </footer>
+  </body>
 </html>

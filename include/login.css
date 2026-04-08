@@ -1,3 +1,10 @@
+/* 
+   Group Name: Leaderboard Game
+   Members: Yifan Sun, Tony Baxter, Zongrui Liu
+   Author: Zongrui Liu
+   Usage: Styles for the login page, including the auth layout,
+   card, titles, footer links, and error message.
+*/
 .auth-wrapper {
   display: flex;
   align-items: center;

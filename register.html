@@ -1,60 +1,80 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="author" content="Zongrui Liu">
-  <meta name="description" content="Breakout — Register">
-  <title>Breakout — Register</title>
-  <link rel="stylesheet" href="include/style.css">
-  <link rel="stylesheet" href="include/register.css">
-  <script src="include/register.js" defer></script>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Zongrui Liu" />
+    <meta name="description" content="Breakout — Register" />
+    <title>Breakout — Register</title>
+    <link rel="stylesheet" href="include/style.css" />
+    <link rel="stylesheet" href="include/register.css" />
+    <script src="include/register.js" defer></script>
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav>
+      <a href="index.html" class="nav-logo">BREAKOUT</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="game.html">Play</a></li>
+        <li><a href="leaderboard.html">Leaderboard</a></li>
+        <li><a href="login.html" id="nav-auth-link">Login</a></li>
+      </ul>
+    </nav>
 
-  <!-- NAV -->
-  <nav>
-    <a href="index.html" class="nav-logo">BREAKOUT</a>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="game.html">Play</a></li>
-      <li><a href="leaderboard.html">Leaderboard</a></li>
-      <li><a href="login.html" id="nav-auth-link">Login</a></li>
-    </ul>
-  </nav>
+    <div class="auth-wrapper">
+      <div class="card auth-card fade-in">
+        <h2 class="auth-title">REGISTER</h2>
+        <p class="auth-sub">Create an account to save scores</p>
 
-  <div class="auth-wrapper">
-    <div class="card auth-card fade-in">
-      <h2 class="auth-title">REGISTER</h2>
-      <p class="auth-sub">Create an account to save scores</p>
+        <div class="auth-error" id="regError"></div>
 
-      <div class="auth-error" id="regError"></div>
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input
+            type="text"
+            id="username"
+            placeholder="Choose a username"
+            autocomplete="username"
+          />
+        </div>
 
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" id="username" placeholder="Choose a username" autocomplete="username">
-      </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            placeholder="Create a password"
+            autocomplete="new-password"
+          />
+          <div class="password-rules">At least 4 characters</div>
+        </div>
 
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" placeholder="Create a password" autocomplete="new-password">
-        <div class="password-rules">At least 4 characters</div>
-      </div>
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <input
+            type="password"
+            id="confirmPassword"
+            placeholder="Confirm your password"
+            autocomplete="new-password"
+          />
+        </div>
 
-      <div class="form-group">
-        <label for="confirmPassword">Confirm Password</label>
-        <input type="password" id="confirmPassword" placeholder="Confirm your password" autocomplete="new-password">
-      </div>
+        <button
+          class="btn btn-primary"
+          style="width: 100%; margin-top: 8px"
+          id="btnRegister"
+        >
+          Create Account
+        </button>
 
-      <button class="btn btn-primary" style="width:100%; margin-top:8px;" id="btnRegister">Create Account</button>
-
-      <div class="auth-footer">
-        Already have an account? <a href="login.html">Login here</a>
+        <div class="auth-footer">
+          Already have an account? <a href="login.html">Login here</a>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- Toast -->
-  <div class="toast toast-success" id="toast"></div>
-</body>
+    <!-- Toast -->
+    <div class="toast toast-success" id="toast"></div>
+  </body>
 </html>

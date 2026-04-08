@@ -1,4 +1,12 @@
 <?php
+/* 
+   Group Name: Leaderboard Game
+   Members: Yifan Sun, Tony Baxter, Zongrui Liu
+   Author: Yifan Sun
+   Usage: PHP file for retrieving leaderboard data from the database, including
+   the top 20 highest scores with each user's best score and play date, and
+   returning the results in JSON format.
+*/
 header('Content-Type: application/json');
 require_once 'db.php';
 
